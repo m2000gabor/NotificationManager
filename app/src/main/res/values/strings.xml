@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DatabaseBasic</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_deleteAll">Delete All</string>
+    <string name="action_summa">In total</string>
+    <string name="hint_room">Room&#8230;</string>
+    <string name="hint_category">Category&#8230;</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="update_one_item">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="hint_number">Number</string>
+    <string name="newActivity">New Activity</string>
+    <string name="notif">New Notification</string>
+    <string name="notification_title">Notification</string>
+    <string name="hint_notifications_text">Description</string>
+</resources>
