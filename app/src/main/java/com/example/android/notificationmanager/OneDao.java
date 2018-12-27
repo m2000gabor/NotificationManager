@@ -1,4 +1,4 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

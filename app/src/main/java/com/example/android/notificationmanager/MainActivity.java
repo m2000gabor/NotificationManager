@@ -1,4 +1,4 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;

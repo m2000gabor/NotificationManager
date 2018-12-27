@@ -1,4 +1,4 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 
 import android.app.IntentService;
 import android.app.NotificationChannel;

@@ -1,9 +1,6 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Query;
-import android.os.AsyncTask;
 
 import java.util.List;
 
@@ -24,8 +21,7 @@ public class WordRepository {
 
     public Word getOneItem(int pos) {
         List<Word> words = mAllWords.getValue();
-        Word SingleItem = words.get(pos);
-        return SingleItem;
+        return words.get(pos);
     }
 
 
@@ -82,7 +78,7 @@ public class WordRepository {
     }
 
     //delete one
-    public void deleteOneSingleItem(Word oldWord){new delOneAsyncTask(mWordDao).execute(oldWord);};
+    public void deleteOneSingleItem(Word oldWord){new delOneAsyncTask(mWordDao).execute(oldWord);}
     private static class delOneAsyncTask extends android.os.AsyncTask<Word, Void, Void> {
         private OneDao mAsyncTaskDao;
         delOneAsyncTask(OneDao dao){mAsyncTaskDao = dao;}

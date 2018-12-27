@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DatabaseBasic</string>
+    <string name="app_name">NotificationManager</string>
     <string name="action_delete">Delete</string>
     <string name="action_deleteAll">Delete All</string>
     <string name="action_summa">In total</string>

@@ -1,8 +1,9 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+
 import java.util.List;
 
 public class WordViewModel extends AndroidViewModel {

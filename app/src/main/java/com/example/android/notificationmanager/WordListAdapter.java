@@ -1,4 +1,4 @@
-package com.example.android.databasebasic;
+package com.example.android.notificationmanager;
 
 /*;
  * Copyright (C) 2017 Google Inc.
