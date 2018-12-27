@@ -11,7 +11,6 @@ public class Word {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
-    @NonNull
     @ColumnInfo(name = "word")
     private String mWord;
     // public Word(String word) {this.mWord = word;}
@@ -21,6 +20,9 @@ public class Word {
 
     @ColumnInfo (name="prise")
     private int mNumber;
+
+    @ColumnInfo
+    private boolean mNotificationBoolean;
 
     public void setWord(@NonNull String mWord) {
         this.mWord = mWord;
@@ -32,5 +34,11 @@ public class Word {
     public String getCategory(){return this.mCategory;}
     public void setNumber(int Number) {this.mNumber=Number;}
     public int getNumber(){return this.mNumber;}
+    public boolean getNotificationBoolean() {
+        return mNotificationBoolean;
+    }
+    public void setNotificationBoolean(boolean mNotificationBoolean) {
+        this.mNotificationBoolean = mNotificationBoolean;
+    }
 
 }

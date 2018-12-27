@@ -21,7 +21,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,25 +32,25 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         private final TextView wordItemView;
         private final TextView catItemView;
         private final TextView numItemView;
+        private final TextView notiBooleanView;
 
         private WordViewHolder(View itemView) {
             super(itemView);
-            wordItemView = itemView.findViewById(R.id.textView);
+            wordItemView = itemView.findViewById(R.id.TitleTextView);
             catItemView = itemView.findViewById(R.id.edit_cat_TextView);
             numItemView = itemView.findViewById(R.id.prise_textView);
+            notiBooleanView = itemView.findViewById(R.id.notificationBoolean_textView);
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Word> mWords; // Cached copy of words
-    private Context context;
     private OnItemClicked onClick;
 
     //make interface like this
     public interface OnItemClicked {void onItemClick(int position);}
 
     WordListAdapter(Context context) {
-        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -89,6 +88,14 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             }
         });
 
+        boolean notiBool = current.getNotificationBoolean();
+        holder.notiBooleanView.setText(String.valueOf(notiBool));
+        holder.notiBooleanView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(holder.getAdapterPosition());
+            }
+        });
 
     }
 

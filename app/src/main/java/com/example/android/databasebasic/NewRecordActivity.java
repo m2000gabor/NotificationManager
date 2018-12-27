@@ -19,6 +19,7 @@ public class NewRecordActivity extends AppCompatActivity {
     private EditText mEditWordView;
     private EditText mEditCatView;
     private EditText mEditNumber;
+    private CheckBox mNotiCheckbox;
     boolean ForUpdate = false;
     Intent replyIntent = new Intent();
     boolean checkBox1State = false;
@@ -30,8 +31,8 @@ public class NewRecordActivity extends AppCompatActivity {
         mEditWordView = findViewById(R.id.edit_word);
         mEditCatView = findViewById(R.id.edit_cat);
         mEditNumber = findViewById(R.id.edit_number);
+        mNotiCheckbox = findViewById(R.id.chb1);
         Button button = findViewById(R.id.button_save);
-        CheckBox mCheckBox1 = findViewById(R.id.chb1);
 
         ForUpdate = getIntent().getBooleanExtra("FOR_UPDATE",false);
 
@@ -40,6 +41,7 @@ public class NewRecordActivity extends AppCompatActivity {
             mEditWordView.setText(getIntent().getStringExtra("THE_TEXT"));
             mEditCatView.setText(getIntent().getStringExtra("THE_CATEGORY"));
             mEditNumber.setText(getIntent().getStringExtra("THE_NUMBER"));
+            mNotiCheckbox.setChecked(getIntent().getBooleanExtra("NOTIFICATION",false));
             button.setText(R.string.update_one_item);
         }
 
@@ -55,10 +57,12 @@ public class NewRecordActivity extends AppCompatActivity {
                     String word = mEditWordView.getText().toString();
                     String cat = mEditCatView.getText().toString();
                     int num = Integer.parseInt(mEditNumber.getText().toString());
+                    boolean mNotiB= mNotiCheckbox.isChecked();
                     replyIntent.putExtra(EXTRA_REPLY, word);
                     replyIntent.putExtra("EXTRA_CATEGORY", cat);
                     replyIntent.putExtra("FOR_UPDATE",ForUpdate);
                     replyIntent.putExtra("EXTRA_NUMBER",num);
+                    replyIntent.putExtra("NOTIFICATION",mNotiB);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

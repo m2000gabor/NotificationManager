@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
         intent.putExtra("THE_CATEGORY",actualWordItem.getCategory());
         intent.putExtra("THE_NUMBER",Integer.toString(actualWordItem.getNumber()));
         intent.putExtra("FOR_UPDATE",true);
+        intent.putExtra("NOTIFICATION",actualWordItem.getNotificationBoolean());
         intent.putExtra("ID",actualItemId);
         startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
 
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
             word.setWord(data.getStringExtra(NewRecordActivity.EXTRA_REPLY));
             word.setCategory(data.getStringExtra("EXTRA_CATEGORY"));
             word.setNumber(data.getIntExtra("EXTRA_NUMBER",0));
+            word.setNotificationBoolean(data.getBooleanExtra("NOTIFICATION",false));
             mWordViewModel.insert(word);
         }
         //update
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
             actualWordItem.setWord(data.getStringExtra(NewRecordActivity.EXTRA_REPLY));
             actualWordItem.setCategory(data.getStringExtra("EXTRA_CATEGORY"));
             actualWordItem.setNumber(data.getIntExtra("EXTRA_NUMBER",0));
+            actualWordItem.setNotificationBoolean(data.getBooleanExtra("NOTIFICATION",false));
             mWordViewModel.updateOne(actualWordItem);
         }
         //del one
