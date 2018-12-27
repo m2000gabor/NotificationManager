@@ -14,4 +14,9 @@
         android:title="@string/notification_title"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_make_notiAtTime"
+        android:orderInCategory="100"
+        android:title="@string/notificationAtspecificTime_title"
+        app:showAsAction="never" />
 </menu>
