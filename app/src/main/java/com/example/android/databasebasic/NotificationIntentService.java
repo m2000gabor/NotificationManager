@@ -15,8 +15,12 @@ public class NotificationIntentService extends IntentService {
     }
     @Override
    protected void onHandleIntent(Intent intent){
-    createNotificationChannel();
-    makeANoti();
+   NotificationMaker mNotimaker = new NotificationMaker();
+   mNotimaker.createNotificationChannel(this);
+   mNotimaker.makeANoti(this);
+
+    //createNotificationChannel();
+    //makeANoti();
     stopSelf();
     }
 
