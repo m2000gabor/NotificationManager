@@ -1,5 +1,6 @@
 package com.example.android.databasebasic;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -111,25 +112,10 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
                 mWordViewModel.deletingAll();
 
             case (R.id.action_make_notification):
-                // Create an explicit intent for an Activity in your app
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                makeANoti();
 
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "CHANNEL_ID")
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setSmallIcon(R.drawable.ic_add_black_24dp)
-                        // Set the intent that will fire when the user taps the notification
-                        .setContentIntent(pendingIntent)
-                        .setAutoCancel(true);
-
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-                // notificationId is a unique int for each notification that you must define
-                notificationManager.notify(33, mBuilder.build());
-
+            case (R.id.action_make_notiAtTime):
+                makeTimeNotification();
         }
 
         return super.onOptionsItemSelected(item);
@@ -171,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
         }
     }
 
-    private void createNotificationChannel() {
+    public void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -187,4 +173,40 @@ public class MainActivity extends AppCompatActivity implements WordListAdapter.O
         }
     }
 
+    public void makeANoti(){
+        // Create an explicit intent for an Activity in your app
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.ic_add_black_24dp)
+                // Set the intent that will fire when the user taps the notification
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(33, mBuilder.build());
+    }
+
+    private void makeTimeNotification(){
+        //getTime
+        long currTime = System.currentTimeMillis();
+
+        //pendingIntent
+        Intent intent = new Intent(this, NotificationIntentService.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //PendingIntent mPendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        PendingIntent mPendingIntent = PendingIntent.getService(this,0,intent,0);
+
+
+        //setAlarm
+        AlarmManager mAlarmManager = this.getSystemService(AlarmManager.class);
+        mAlarmManager.set(AlarmManager.RTC_WAKEUP,currTime+5,mPendingIntent);
+    }
 }
